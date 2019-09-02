@@ -42,13 +42,11 @@ class APICall
      * @param Response $response
      *
      * @throws Exception
-     *
-     * @return array
      */
-    public function responseOrThrow(Response $response): array
+    public function responseOrThrow(Response $response) : Response
     {
-        if (200 === $response) {
-            return $response->body;
+        if (200 === $response->code) {
+            return $response;
         }
 
         throw new Exception($response->code.' '.$response->raw_body);

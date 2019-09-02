@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace atk4\ui\FormField;
 
+use atk4\core\Exception;
 use atk4\core\HookTrait;
-use ATK4HereXYZ\API\Suggest;
+use atk4\ui\Exception\ExitApplicationException;
+use ATK4HereXYZ\API\Calls\Suggest;
 use Throwable;
 
 class HERESuggest extends AutoComplete
@@ -40,9 +42,12 @@ class HERESuggest extends AutoComplete
     }
 
     /**
-     * Get results from Rest Suggest.
+     * Get results from REST Suggest.
      *
      * @param string $search
+     *
+     * @throws Exception
+     * @throws ExitApplicationException
      *
      * @return array
      */
@@ -52,13 +57,12 @@ class HERESuggest extends AutoComplete
 
         try {
             $api  = new Suggest($this->api_options);
-            $data = $api->getSuggest($search);
-            foreach ($data->suggestions as $location) {
+            foreach ($api->getSuggest($search) as $location) {
                 $hook_value = $this->hook('onSuggestValue', [$location]);
                 $hook_label = $this->hook('onSuggestLabel', [$location]);
                 $data[]     = [
-                    'id'   => $hook_value ?? $location->locationId,
-                    'name' => $hook_label ?? $location->label,
+                    'id'   => empty($hook_value) ? $location->locationId : $hook_value,
+                    'name' => empty($hook_label) ? $location->label : $hook_label,
                 ];
             }
         } catch (Throwable $e) {

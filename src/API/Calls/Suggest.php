@@ -38,6 +38,7 @@ class Suggest extends APICall
             'max_results'    => $this->limit,
         ];
 
-        return $this->responseOrThrow(Request::get($this->url, $this->header, $parameters));
+        $response = $this->responseOrThrow(Request::get($this->url, $this->header, $parameters));
+        return $response->body->suggestions;
     }
 }
