@@ -1,7 +1,10 @@
 <?php
 
-namespace ATK4HereXYZ\API;
+declare(strict_types=1);
 
+namespace ATK4HereXYZ\API\Calls;
+
+use ATK4HereXYZ\API\APICall;
 use Unirest\Request;
 
 class Geocode extends APICall

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ATK4HereXYZ\API;
 
 use atk4\core\DIContainerTrait;
@@ -25,8 +27,7 @@ class APICall
     {
         $this->setDefaults($defaults);
 
-        if (empty($this->referer_domain))
-        {
+        if (empty($this->referer_domain)) {
             $this->referer_domain = gethostname();
         }
 
@@ -41,14 +42,15 @@ class APICall
      * @param Response $response
      *
      * @throws Exception
+     *
      * @return array
      */
     public function responseOrThrow(Response $response): array
     {
-        if ($response === 200) {
+        if (200 === $response) {
             return $response->body;
         }
 
-        throw new Exception($response->code . ' ' . $response->raw_body);
+        throw new Exception($response->code.' '.$response->raw_body);
     }
 }

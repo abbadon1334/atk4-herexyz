@@ -1,7 +1,10 @@
 <?php
 
-namespace ATK4HereXYZ\API;
+declare(strict_types=1);
 
+namespace ATK4HereXYZ\API\Calls;
+
+use ATK4HereXYZ\API\APICall;
 use Unirest\Request;
 
 class Suggest extends APICall
@@ -21,6 +24,7 @@ class Suggest extends APICall
      * @param string $query
      *
      * @throws \atk4\ui\Exception
+     *
      * @return array
      */
     public function getSuggest(string $query): array
