@@ -18,7 +18,7 @@
     "autoload": {
         "psr-4": {
             "ATK4HereXYZ\\API\\": "src/API/",
-            "atk4\\FormField\\": "src/atk4/FormField/"
+            "atk4\\ui\\FormField\\": "src/atk4/FormField/"
         }
     },
     "autoload-dev": {
