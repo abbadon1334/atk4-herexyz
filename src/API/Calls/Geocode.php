@@ -28,6 +28,7 @@ class Geocode extends APICall
             'locationid' => $location_id,
         ];
 
-        return $this->responseOrThrow(Request::get($this->url, $this->header, $parameters));
+        $response = $this->responseOrThrow(Request::get($this->url, $this->header, $parameters));
+        return $response->body->Response->View[0]->Result;
     }
 }
