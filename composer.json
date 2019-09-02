@@ -1,7 +1,7 @@
 {
     "name": "abbadon1334/atk4-herexyz",
     "description": "API here.com XYZ - For atk4/ui with FormFields",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "atk4/ui": "1.7.1",
+        "atk4/ui": "dev-develop",
         "mashape/unirest-php": "3.0.4",
         "ext-json": "*"
     },
